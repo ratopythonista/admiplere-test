@@ -1,0 +1,50 @@
+version: "3"
+services:
+  adimplere_steam:
+    image: adimplere/steam:latest
+    build: ./steam
+    container_name: adimplere-steam
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./steam:/app
+    networks:
+      - adimplere-network
+
+  adimplere_microsoft:
+    image: adimplere/microsoft:latest
+    build: ./microsoft
+    container_name: adimplere-microsoft
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./microsoft:/app
+    networks:
+      - adimplere-network
+
+  adimplere_nintendo:
+    image: adimplere/nintendo:latest
+    build: ./nintendo
+    container_name: adimplere-nintendo
+    ports:
+      - "5002:5000"
+    volumes:
+      - ./nintendo:/app
+    networks:
+      - adimplere-network
+
+  adimplere_gameshub:
+    image: adimplere/gameshub:latest
+    build: ./gameshub
+    container_name: adimplere-gameshub
+    ports:
+      - "8000:5000"
+    volumes:
+      - ./gameshub:/app
+    networks:
+      - adimplere-network
+
+
+networks:
+  adimplere-network:
+    driver: bridge
